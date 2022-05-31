@@ -36,8 +36,12 @@ class SerieDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class SeasonCreateView(LoginRequiredMixin, CreateView):
-	model = Serie
-	fields = ["name", "description"]
+	model = Season
+	fields = ["serie", "season_number"]
+	login_url = "login"
+
+class SeasonDetailView(LoginRequiredMixin, DetailView):
+	model = Season
 	login_url = "login"
 
 

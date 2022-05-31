@@ -2,10 +2,23 @@
 
 {% block content %}
 <h1>{{ object.name }}</h1>
-<a href="{{ object.get_absolute_url }}/update"><button>Modify</button></a>
+
+{% if user.is_staff %}
+	<a href="{{ object.get_absolute_url }}/update"><button>Modify</button></a>
+{% endif %}
+
 <p>{{ object.description }}</p>
 <ul>
-	<li>Seasons: {{ seasons }}</li>
+	<li>Seasons in total: {{ seasons }}</li>
 </ul>
+	{% for season in object.get_all_seasons %}
+		<h3>{{ season }} - episodes {{ season.get_all_episodes.count  }}</h3>
+		<ul>
+			{% for episode in season.get_all_episodes %}
+				<li>Episode {{ episode.episode_number }}</li>
+			{% endfor %}
+		</ul>
+</ul>
+	{% endfor %} 
 
 {% endblock %}

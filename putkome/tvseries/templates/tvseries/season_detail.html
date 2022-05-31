@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>{{ object }}</h1>
+	{% for episode in object.get_all_episodes %}
+		<ul>
+			<li>{{ episode }}</li>
+		</ul>
+	{% empty %}
+		<p>No episodes in season yet.</p>
+	{% endfor %}
+{% endblock %}
