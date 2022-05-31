@@ -18,7 +18,7 @@ class Serie(models.Model):
 		return self.serie_seasons.all()
 	
 	class Meta:
-		ordering: ['name']
+		ordering = ['name']
 		verbose_name = "TV Serie"
 		verbose_name_plural = "Tv Series"
 

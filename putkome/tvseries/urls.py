@@ -9,5 +9,7 @@ urlpatterns = [
 	path('new/', views.SerieCreateView.as_view(), name="serie_create"),
 	
 	path('seasons/new/', views.SeasonCreateView.as_view(), name="season_create"),
-	path('seasons/<int:pk>/', views.SeasonDetailView.as_view(), name="season_detail"),	
+	path('seasons/<int:pk>/', views.SeasonDetailView.as_view(), name="season_detail"),
+
+	path('episodes/new/', views.EpisodeCreateView.as_view(), name="episode_create"),	
 ]

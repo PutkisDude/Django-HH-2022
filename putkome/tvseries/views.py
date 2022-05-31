@@ -6,7 +6,7 @@ from tvseries.models import Serie, Episode, Season
 from django.db.models import Count
 
 class SerieListView(ListView):
-	paginate = 5
+	paginate_by = 5
 	model = Serie
 
 class SerieDetailView(DetailView):
@@ -46,6 +46,7 @@ class SeasonDetailView(LoginRequiredMixin, DetailView):
 
 
 class EpisodeCreateView(LoginRequiredMixin, CreateView):
-	model = Serie
-	fields = ["name", "description"]
+	model = Episode
+	fields = ["season", "episode_number"]
 	login_url = "login"
+	success_url = reverse_lazy("episode_create")

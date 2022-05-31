@@ -4,7 +4,7 @@
 
 	<h1> TV series </h1>
 	{% if user.is_staff %}
-		<a href="{% url 'serie_create' %}"><button>Add a serie</button></a>
+		<p><a href="{% url 'serie_create' %}">Add a New Serie</a>
 	{% endif %}
 
 	{% for serie in object_list %}
@@ -14,4 +14,22 @@
 	{% empty %}
 		<p>Nothing to show.</p>
 	{% endfor %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+	<br />
+	<p>Page {{ page_obj.number }} of {{page_obj.paginator.num_pages}}</p>
+	{% if page_obj.has_previous %}
+		<a href="?page=1"> &laquo; First </a> -
+		<a href="?page={{ page_obj.previous_page_number }}"> Previous </a> -
+	{% else %}
+		<span> &laquo; First - Previous -</span>
+	{% endif %}
+	{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}"> Next </a> -
+		<a href="?page={{ page_obj.paginator.num_pages }}"> Last &raquo;</a>
+	{% else %}
+		<span> Next - Last &raquo</span>
+	{% endif %}
+{% endif %}
+
 {% endblock %}

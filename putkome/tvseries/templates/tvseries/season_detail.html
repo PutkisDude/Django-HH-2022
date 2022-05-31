@@ -2,6 +2,7 @@
 
 {% block content %}
 	<h1>{{ object }}</h1>
+	<a href="{% url "episode_create" %}"><button>Add Episodes</button></a>
 	{% for episode in object.get_all_episodes %}
 		<ul>
 			<li>{{ episode }}</li>
