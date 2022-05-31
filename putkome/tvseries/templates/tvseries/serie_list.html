@@ -1,0 +1,10 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+	{% for serie in object_list %}
+		<p>{{ serie }}</p>
+	{% empty %}
+		<p>Nothing to show.</p>
+	{% endfor %}
+{% endblock %}
