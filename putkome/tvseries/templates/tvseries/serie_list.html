@@ -1,9 +1,16 @@
-
 {% extends "base.html" %}
 
 {% block content %}
+
+	<h1> TV series </h1>
+	{% if user.is_staff %}
+		<a href="{% url 'serie_create' %}"><button>Add a serie</button></a>
+	{% endif %}
+
 	{% for serie in object_list %}
-		<p>{{ serie }}</p>
+		<ul>
+			<li><p><a href="{{serie.get_absolute_url}}">{{ serie }}</a></p></li>
+		</ul>
 	{% empty %}
 		<p>Nothing to show.</p>
 	{% endfor %}

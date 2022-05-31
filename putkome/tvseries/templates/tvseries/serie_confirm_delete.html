@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="POST">{% csrf_token %}
+		<p> Are you sure you want to delete the serie "{{object.name}}" permamently?</p>
+		{{ form.as_p }}
+		<input style="color:red" type="submit" value="Delete"><a href="#"><button style="color:green">Cancel</button></a>
+	</form>
+
+{% endblock %}
