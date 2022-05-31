@@ -4,11 +4,21 @@
 		<meta charset="UTF-8">
 		<meta name="author" content="Putkis">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Otsake</title>
+		<title>The Djangoproject</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'css/base.css' %}">
 	</head>
 	<body>
 		<nav>
-			<p><a href="/">INDEX</a>
+			<ul>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#something">Something</a></li>
+				{% if user.is_authenticated %}
+					<li class="nav-right"><a href="#Login">Logout</a></li>
+				{% else %}
+					<li class="nav-right"><a href="#logout">Login</a></li>
+				{% endif %}
+			</ul>
 		</nav>
 		<h1>Hötömötö sivuke</h1>
 		<p> Hötömötö</p>
