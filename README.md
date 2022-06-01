@@ -26,11 +26,12 @@ Project is in early alpha stage so use it with caution.
 
 1. sudo apt-get install virtualenv git
 2. mkdir whatever_you_want
-2. virtualenv env/ -p python3 --system-site-packages
+3. virtualenv env/ -p python3 --system-site-packages
 4. git clone https://github.com/PutkisDude/Django-HH-2022.git
 5. source env/bin/active
 6. which pip
-7. cd putkome
-8. ./manage.py migrate
-9. ./manage.py createsuperuser
-10. ./manage.py runserver
+7. pip install -r requirements.txt
+8. cd putkome
+9. ./manage.py migrate
+10. ./manage.py createsuperuser
+11. ./manage.py runserver
