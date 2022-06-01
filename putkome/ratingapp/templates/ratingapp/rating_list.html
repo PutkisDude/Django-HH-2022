@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<h1>My rating </h1>
+
+	{% for rating in object_list %}
+		<p>{{ rating.episode }} - <b>*{{ rating.rating }}/5*</b> - {{ rating.updated }} - 
+			<a href="{{rating.get_absolute_url}}/delete">Delete</a> -
+			<a href="{{rating.get_absolute_url}}/update">Change</a>
+		</p>
+	{% endfor %}
+{% endblock %}

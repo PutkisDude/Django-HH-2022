@@ -1,6 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db.models import Avg
+
+from django.db.models import FloatField
+from django.db.models.functions import Cast
 
 class Serie(models.Model):
 	name = models.CharField(max_length=300, unique=True)
@@ -13,6 +17,9 @@ class Serie(models.Model):
 		
 	def get_absolute_url(self):
 		return reverse('serie_detail', kwargs={"pk": self.pk})
+
+	def get_rating_url(self):
+		return reverse('rating', kwargs={"pk": self.pk})
 
 	def get_all_seasons(self):
 		return self.serie_seasons.all()
@@ -42,6 +49,7 @@ class Season(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('season_detail', kwargs={"pk": self.pk})
+
 		
 	class Meta:
 		unique_together = [['serie', 'season_number']]
@@ -63,7 +71,10 @@ class Episode(models.Model):
 		return f"{self.season} ep{self.episode_number}"
 
 	def get_absolute_url(self):
-		return reverse('episode_detail', kwargs={"pk": self.pk})
+		return reverse('rating', kwargs={"pk": self.pk})
+
+	def get_average_rating(self):
+		return self.episode_rating.all().aggregate(Avg('rating'))['rating__avg']
 
 	class Meta:
 		unique_together = [['episode_number', 'season']]

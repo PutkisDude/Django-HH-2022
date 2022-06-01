@@ -12,17 +12,18 @@
 	<a href="{{ object.get_absolute_url }}/delete">Delete</a>
 </p>
 {% endif %}
-
+	
 <ul>
 	<li>Seasons in total: {{ seasons }}</li>
 </ul>
 	{% for season in object.get_all_seasons %}
 		<h3>{{ season }} - episodes {{ season.get_all_episodes.count  }}</h3>
-
 		<ul>
 			{% for episode in season.get_all_episodes %}
-
-				<li>Episode {{ episode.episode_number }}</li>
+			
+				<li>Episode {{ episode.episode_number }} - Average Rating: {{ episode.get_average_rating|default_if_none:"-" }}
+					<a href="{{episode.get_absolute_url}}">Rate</a>
+				</li>
 			{% endfor %}
 		</ul>
 	{% endfor %} 

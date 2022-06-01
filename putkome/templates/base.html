@@ -12,7 +12,9 @@
 		<nav>
 			<ul>
 				<li><a href="/">Series</a></li>
-				<li><a href="#something">My Ratings</a></li>
+				{% if user.is_authenticated %}
+				<li><a href="{% url 'rating_list' %}">My Ratings</a></li>
+				{% endif %}
 				{% if user.is_authenticated %}
 					<li class="nav-right"><a href="{% url 'logout' %}">Logout</a></li>
 				{% else %}
